@@ -22,7 +22,7 @@ namespace ImPlot {
 }
 // run function
 void run2() {
-    
+
 }
 
 void run3() {
@@ -52,8 +52,8 @@ int main(int, char**)
     //ImGui_ImplWin32_EnableDpiAwareness();
     WNDCLASSEXW wc = { sizeof(wc), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, L"ImGui Example", NULL };
     ::RegisterClassExW(&wc);
-    HWND hwnd = ::CreateWindowW(wc.lpszClassName, L"Appeal Application Form", 
-        WS_OVERLAPPEDWINDOW, desktop.right/2 - 600/2, desktop.bottom/2 - 800/2, 600, 800, NULL, NULL, wc.hInstance, NULL);
+    HWND hwnd = ::CreateWindowW(wc.lpszClassName, L"Appeal Application Form",
+        WS_OVERLAPPEDWINDOW, desktop.right / 2 - 600 / 2, desktop.bottom / 2 - 800 / 2, 600, 800, NULL, NULL, wc.hInstance, NULL);
 
     // Initialize Direct3D
     if (!CreateDeviceD3D(hwnd))
@@ -130,7 +130,7 @@ int main(int, char**)
         if (done)
             break;
 
-        
+
         // Start the Dear ImGui frame
         ImGui_ImplDX9_NewFrame();
         ImGui_ImplWin32_NewFrame();
@@ -139,7 +139,7 @@ int main(int, char**)
         ImGui::SetNextWindowSize(vp->WorkSize);
         ImGui::SetNextWindowPos(vp->WorkPos);
         // khai báo biến
-        
+
         static int selected_fish = 0;
         const char* names[] = { "Bream", "Haddock", "Mackerel", "Pollock", "Tilefish" };
         static bool toggles[] = { true, false, false, false, false };
@@ -155,10 +155,10 @@ int main(int, char**)
         static char letterOfAppealLabel[] = "Letter Of Appeal Upload";
         static char uploadField[] = "Choose files or drag here";
         static char selectlabel[] = "Do you have supporting documents to upload in support of your appeal?";
-        
-        
+
+
         // hàm giao diện chính ở đây 
-        ImGui::Begin("Appeal Application Form",NULL, ImGuiWindowFlags_NoResize);
+        ImGui::Begin("Appeal Application Form", NULL, ImGuiWindowFlags_NoResize);
         ImGui::PushFont(io.Fonts->Fonts[1]);
         ImGui::Text(title);
         ImGui::PopFont();
@@ -167,10 +167,10 @@ int main(int, char**)
         ImGui::PopFont();
 
         ImGui::Text(nameLabel);
-        ImGui::Columns(2, "mycolumns"); // 4-ways, with border
+        ImGui::Columns(2, "mycolumns", false); // 4-ways, with border
         ImGui::PushItemWidth(-1);
 
-        ImGui::InputText("##First", first, 256); 
+        ImGui::InputText("##First", first, 256);
         ImGui::PopItemWidth();
         ImGui::NextColumn();
         ImGui::PushItemWidth(-1);
@@ -187,23 +187,23 @@ int main(int, char**)
         ImGui::InputText("##StudentNumber", blankPlaceHolder, 256);
         ImGui::PopItemWidth();
 
-        ImGui::PushFont(io.Fonts->Fonts[2]); 
+        ImGui::PushFont(io.Fonts->Fonts[2]);
         ImGui::Text(appealTitle);
         ImGui::PopFont();
 
         ImGui::Text(requestSumLabel);
         ImGui::PushItemWidth(-1);
-        ImGui::InputText("##Appeal Information", last, 256);
+        ImGui::InputText("##Appeal Information", blankPlaceHolder, 256);
         ImGui::PopItemWidth();
 
         ImGui::Text(letterOfAppealLabel);
 
-        ImGui::InputTextMultiline("##letterOfAppealLabel", last, 256, ImVec2(-1, 80));
-     
+        ImGui::Button(uploadField, ImVec2(-1, 80));
+
 
         ImGui::Text(selectlabel);
         ImGui::PushItemWidth(-1);
-        if (ImGui::Button(names[selected_fish],ImVec2(-1,30)))
+        if (ImGui::Button(names[selected_fish], ImVec2(-1, 30)))
             ImGui::OpenPopup("my_select_popup");
         if (ImGui::BeginPopup("my_select_popup"))
         {
@@ -216,7 +216,7 @@ int main(int, char**)
         }
 
         ImGui::PopItemWidth();
-        
+
         ImGui::End();
         run2();
 
@@ -226,7 +226,7 @@ int main(int, char**)
         g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
         g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
         g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
-        D3DCOLOR clear_col_dx = D3DCOLOR_RGBA((int)(clear_color.x*clear_color.w*255.0f), (int)(clear_color.y*clear_color.w*255.0f), (int)(clear_color.z*clear_color.w*255.0f), (int)(clear_color.w*255.0f));
+        D3DCOLOR clear_col_dx = D3DCOLOR_RGBA((int)(clear_color.x * clear_color.w * 255.0f), (int)(clear_color.y * clear_color.w * 255.0f), (int)(clear_color.z * clear_color.w * 255.0f), (int)(clear_color.w * 255.0f));
         g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clear_col_dx, 1.0f, 0);
         if (g_pd3dDevice->BeginScene() >= 0)
         {
